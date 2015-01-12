@@ -5,6 +5,5 @@
           android:layout_height="match_parent"
           android:name="com.detroitlabs.kyleofori.hellomoon.HelloMoonFragment">
 
-
           </fragment>
 
