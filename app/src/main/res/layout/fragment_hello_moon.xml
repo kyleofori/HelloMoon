@@ -17,17 +17,36 @@
         android:layout_weight="0">
 
         <Button
-            android:id="@+id/hellomoon_playButton"
+            android:id="@+id/hellomoon_playVideoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hellomoon_play"/>
+            android:text="@string/hellomoon_play_video"/>
 
         <Button
-            android:id="@+id/hellomoon_stopButton"
+            android:id="@+id/hellomoon_stopVideoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hellomoon_stop"/>
+            android:text="@string/hellomoon_stop_video"/>
 
         </TableRow>
+
+    <TableRow
+        android:gravity="center|bottom"
+        android:layout_weight="0">
+
+        <Button
+            android:id="@+id/hellomoon_playSoundButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hellomoon_play_audio"/>
+
+        <Button
+            android:id="@+id/hellomoon_stopSoundButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hellomoon_stop_audio"/>
+
+    </TableRow>
+
 
 </TableLayout>

@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.VideoView;
 
 /**
@@ -30,7 +29,7 @@ public class HelloMoonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_hello_moon, container, false);
 
-        mPlayButton = (Button) v.findViewById(R.id.hellomoon_playButton);
+        mPlayButton = (Button) v.findViewById(R.id.hellomoon_playVideoButton);
         mPlayButton.setEnabled(false);
         vView = (VideoView) v.findViewById(R.id.video_view_apollo);
         vView.setVideoURI(resourceUri);
@@ -62,7 +61,7 @@ public class HelloMoonFragment extends Fragment {
             }
         });
 
-        mStopButton = (Button) v.findViewById(R.id.hellomoon_stopButton);
+        mStopButton = (Button) v.findViewById(R.id.hellomoon_stopVideoButton);
         mStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
