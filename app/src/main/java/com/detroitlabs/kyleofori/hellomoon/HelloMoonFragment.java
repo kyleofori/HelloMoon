@@ -20,8 +20,10 @@ public class HelloMoonFragment extends Fragment {
     private AudioPlayer mPlayer = new AudioPlayer();
     private VideoView vView;
 //    private MediaController mediaController = new MediaController(getActivity());
-    private Button mPlayButton;
-    private Button mStopButton;
+    private Button mPlayVideoButton;
+    private Button mStopVideoButton;
+    private Button mPlayAudioButton;
+    private Button mStopAudioButton;
     private Uri resourceUri = Uri.parse("android.resource://" + "com.detroitlabs.kyleofori" +
             ".hellomoon/raw/apollo_17_strollin");
 
@@ -29,14 +31,15 @@ public class HelloMoonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_hello_moon, container, false);
 
-        mPlayButton = (Button) v.findViewById(R.id.hellomoon_playVideoButton);
-        mPlayButton.setEnabled(false);
+        mPlayVideoButton = (Button) v.findViewById(R.id.hellomoon_playVideoButton);
+        mPlayVideoButton.setEnabled(false);
+        mPlayAudioButton = (Button) v.findViewById(R.id.hellomoon_playSoundButton);
         vView = (VideoView) v.findViewById(R.id.video_view_apollo);
         vView.setVideoURI(resourceUri);
         vView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                mPlayButton.setEnabled(true);
+                mPlayVideoButton.setEnabled(true);
             }
         });
         vView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -47,10 +50,10 @@ public class HelloMoonFragment extends Fragment {
             }
         });
 //        vView.setMediaController(mediaController);
-        mPlayButton.setOnClickListener(new View.OnClickListener() {
+        mPlayVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!mPlayer.isPlaying()) {
+                if (!mPlayer.isPlaying()) {
                     mPlayer.play(getActivity());
                     vView.start();
                 } else {
@@ -61,12 +64,31 @@ public class HelloMoonFragment extends Fragment {
             }
         });
 
-        mStopButton = (Button) v.findViewById(R.id.hellomoon_stopVideoButton);
-        mStopButton.setOnClickListener(new View.OnClickListener() {
+        mPlayAudioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!mPlayer.isPlaying()) {
+                    mPlayer.play(getActivity());
+                } else {
+                    mPlayer.pause();
+                }
+            }
+        });
+
+        mStopVideoButton = (Button) v.findViewById(R.id.hellomoon_stopVideoButton);
+        mStopAudioButton = (Button) v.findViewById(R.id.hellomoon_stopSoundButton);
+        mStopVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mPlayer.stop();
                 vView.stopPlayback();
+            }
+        });
+
+        mStopAudioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPlayer.stop();
             }
         });
         return v;
