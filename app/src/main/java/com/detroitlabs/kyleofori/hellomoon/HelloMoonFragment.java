@@ -34,6 +34,7 @@ public class HelloMoonFragment extends Fragment {
         mPlayVideoButton = (Button) v.findViewById(R.id.hellomoon_playVideoButton);
         mPlayVideoButton.setEnabled(false);
         mPlayAudioButton = (Button) v.findViewById(R.id.hellomoon_playSoundButton);
+
         vView = (VideoView) v.findViewById(R.id.video_view_apollo);
         vView.setVideoURI(resourceUri);
         vView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -53,11 +54,9 @@ public class HelloMoonFragment extends Fragment {
         mPlayVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mPlayer.isPlaying()) {
-                    mPlayer.play(getActivity());
+                if (!vView.isPlaying()) {
                     vView.start();
                 } else {
-                    mPlayer.pause();
                     vView.pause();
                 }
 
@@ -77,10 +76,10 @@ public class HelloMoonFragment extends Fragment {
 
         mStopVideoButton = (Button) v.findViewById(R.id.hellomoon_stopVideoButton);
         mStopAudioButton = (Button) v.findViewById(R.id.hellomoon_stopSoundButton);
+
         mStopVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPlayer.stop();
                 vView.stopPlayback();
             }
         });
