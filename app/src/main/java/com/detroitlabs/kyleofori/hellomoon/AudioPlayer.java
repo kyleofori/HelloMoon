@@ -1,8 +1,11 @@
 package com.detroitlabs.kyleofori.hellomoon;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.media.MediaPlayer;
-import android.util.Log;
+import android.view.Surface;
+import android.view.SurfaceHolder;
 
 /**
  * Created by kyleofori on 1/12/15.
