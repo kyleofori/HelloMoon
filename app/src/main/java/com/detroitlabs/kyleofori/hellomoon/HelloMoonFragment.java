@@ -25,7 +25,11 @@ public class HelloMoonFragment extends Fragment {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPlayer.play(getActivity());
+//                if (mPlayer.isPaused()) {
+                    mPlayer.play(getActivity());
+//                } else {
+//                    mPlayer.pause();
+//                }
             }
         });
 
