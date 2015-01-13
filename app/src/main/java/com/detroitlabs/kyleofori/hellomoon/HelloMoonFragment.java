@@ -3,6 +3,7 @@ package com.detroitlabs.kyleofori.hellomoon;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,14 @@ public class HelloMoonFragment extends Fragment {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (mPlayer.isPaused()) {
+                if(!mPlayer.isPlaying()) {
                     mPlayer.play(getActivity());
-//                } else {
-//                    mPlayer.pause();
-//                }
+                    Log.i("HelloMoonFragmnent", "Should be hearing something");
+                } else {
+                    mPlayer.pause();
+                    Log.i("HelloMoonFragmnent", "Should be paused--no sound");
+                }
+
             }
         });
 
@@ -38,6 +42,7 @@ public class HelloMoonFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mPlayer.stop();
+                Log.i("HelloMoonFragmnent", "Should not be hearing anything--stopped");
             }
         });
         return v;
