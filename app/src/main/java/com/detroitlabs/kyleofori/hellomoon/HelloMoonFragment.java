@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 /**
@@ -19,7 +20,7 @@ public class HelloMoonFragment extends Fragment implements View.OnClickListener 
 
     private AudioPlayer mPlayer = new AudioPlayer();
     private VideoView vView;
-//    private MediaController mediaController = new MediaController(getActivity());
+    private MediaController mediaController;
     private Button mPlayVideoButton;
     private Button mStopVideoButton;
     private Button mPlayAudioButton;
@@ -46,14 +47,17 @@ public class HelloMoonFragment extends Fragment implements View.OnClickListener 
 
         vView = (VideoView) v.findViewById(R.id.video_view_apollo);
         vView.setVideoURI(resourceUri);
+
+        mediaController  = new MediaController(getActivity());
+        mediaController.setAnchorView(vView);
+        vView.setMediaController(mediaController);
+
         vView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mPlayVideoButton.setEnabled(true);
             }
         });
-
-//        vView.setMediaController(mediaController);
 
         return v;
     }
@@ -75,9 +79,12 @@ public class HelloMoonFragment extends Fragment implements View.OnClickListener 
                     vView.pause();
                 }
                 break;
+
             case R.id.hellomoon_stopVideoButton:
-                vView.stopPlayback();
+                vView.pause();
+                vView.seekTo(0);
                 break;
+
             case R.id.hellomoon_playSoundButton:
                 if(!mPlayer.isPlaying()) {
                     mPlayer.play(getActivity());
@@ -85,6 +92,7 @@ public class HelloMoonFragment extends Fragment implements View.OnClickListener 
                     mPlayer.pause();
                 }
                 break;
+
             case R.id.hellomoon_stopSoundButton:
                 mPlayer.stop();
                 break;
