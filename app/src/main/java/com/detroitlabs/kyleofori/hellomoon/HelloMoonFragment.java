@@ -29,6 +29,12 @@ public class HelloMoonFragment extends Fragment implements View.OnClickListener 
             ".hellomoon/raw/apollo_17_strollin");
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_hello_moon, container, false);
 
